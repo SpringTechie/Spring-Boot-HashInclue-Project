@@ -29,6 +29,23 @@ public class UserService {
     // if id is < 0 then return id should not be less than zero.
     public String addUser(User user) {
         System.out.println(userList.size());
+
+        //validation logic, trim for checking if its not empty and filterout empty spaces if any
+        Optional.ofNullable(user.name)
+                .map(String::trim)
+                .filter(name -> !name.isEmpty())
+                .orElseThrow(() -> new IllegalArgumentException("Username shouldnt be null or empty"));
+
+        if(user.id < 0) {
+            return "ID shouldn't be less than 0";
+        }
+        // Check if user already exists by id
+        Optional<User> existingUser = userList.stream()
+                .filter(u -> u.id == user.id)
+                .findFirst();
+        if(existingUser.isPresent()) {
+            return "User already exists";
+        }
         userList.add(user);
         System.out.println(userList.size());
         return "User added Successfully";
