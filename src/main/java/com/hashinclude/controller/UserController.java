@@ -1,0 +1,37 @@
+package com.hashinclude.controller;
+
+import com.hashinclude.models.User;
+import com.hashinclude.services.UserService;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/hash-include")
+public class UserController {
+    private UserService userService = new UserService();
+
+    // to create user
+    @GetMapping("/user/id/{id}")
+    public User fetchUser(@PathVariable int id) {
+       return userService.getUser(id);
+    }
+
+    // to create new user
+    @PostMapping("/new-user")
+    public String addUser(@RequestBody User user) {
+        return userService.addUser(user);
+    }
+
+    // To update user
+    @PutMapping("/update-user")
+    public String updateUser(@RequestBody User user) {
+       return userService.updateUser(user);
+
+    }
+
+    // To delete any user from List
+    @DeleteMapping("/delete-user/id/{id}")
+    public String deleteUser(@PathVariable int id) {
+       return userService.deleteUser(id);
+    }
+
+}
