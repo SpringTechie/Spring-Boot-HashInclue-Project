@@ -2,12 +2,15 @@ package com.hashinclude.controller;
 
 import com.hashinclude.models.User;
 import com.hashinclude.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/hash-include")
 public class UserController {
-    private UserService userService = new UserService();
+
+    @Autowired
+    private UserService userService;
 
     // to create user
     @GetMapping("/user/id/{id}")

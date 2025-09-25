@@ -1,0 +1,14 @@
+JPA imp methods:
+1.  S save(S entity); Takes one object and saves to database: save(new User()).
+2.  saveAll(Iterable<S> entities): Takes collection of object and saves them to database: save(List.of(new User(1,"arun"),new User(2,"pavan"));
+3.  findById(ID id): Queries the DB based on input id. returns object.
+    SELECT * FROM hash_include_project_db.user where id = 1;
+4.  findAllById(Iterable<ID> ids): Queries the DB based on input id. returns list of object.
+5.  findAll(): fetch all rows from table.
+    SELECT * FROM hash_include_project_db.user;
+6.  deleteById(ID id): deletes row based on input id. Example: deleteById(1)
+7.  delete(T entity) ; deletes row based on object: Example: delete(new User(1,"arun"):
+8.  void deleteAllById(Iterable<? extends ID> ids): deletes rows based on input ids.
+9.  void deleteAll(Iterable<? extends T> entities): deletes rows based on objects.
+10. void deleteAll(): delete all rows inside a table.
+11. findAll(Example<S> example, Sort sort);

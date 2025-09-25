@@ -1,21 +1,19 @@
 package com.hashinclude.services;
 
 import com.hashinclude.models.User;
+import com.hashinclude.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
-
+@Service
 public class UserService {
 
-    List<User> userList = new ArrayList<>(List.of(new User(1, "arun"), new User(2, "pavan")));
+    @Autowired
+    private UserRepository userRepository;
 
     public User getUser(int id) {
-        System.out.println(id);
-        Optional<User> user = userList.stream()
-                .filter(usr -> usr.id == id)
-                .findFirst();
+        Optional<User> user = userRepository.findById(id);
         if (user.isPresent()) {
             return user.get();
         } else {
@@ -28,38 +26,17 @@ public class UserService {
     // if username is blank or null or empty throw the error => username should not be null
     // if id is < 0 then return id should not be less than zero.
     public String addUser(User user) {
-        System.out.println(userList.size());
-        userList.add(user);
-        System.out.println(userList.size());
+        userRepository.save(user);
         return "User added Successfully";
     }
 
     public String updateUser(User user) {
-        System.out.println("Before updating" + userList);
-        User existingUser = userList.stream()
-                .filter(usr -> usr.id == user.id)
-                .findFirst().get();
-
-        if (existingUser != null) {
-            existingUser.name = user.name;
-            userList.add(existingUser);
-            System.out.println("After updating" + userList);
-            return "User updated Successfully";
-
-        } else {
-            userList.add(existingUser);
-            System.out.println("After updating" + userList);
-            return "User added Successfully";
-        }
-
+        userRepository.save(user);
+        return "Updated Successfully";
     }
 
     public String deleteUser(int id) {
-        Optional<User> user = userList.stream()
-                .filter(usr -> usr.id == id)
-                .findFirst();
-        userList.remove(user);
-        System.out.println(userList.size());
+        userRepository.deleteById(id);
         return "delete Successfully";
     }
 
