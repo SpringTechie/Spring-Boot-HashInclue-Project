@@ -1,0 +1,25 @@
+In SpringBoot with the help of JPA(Java persistence API) hibernate is writing mysql related queries.
+
+Some imp annotation on model class:
+
+1.@Entity:(Mandatory) By using this annotation on top of a class this tells to hibernate this is a java object that needs to be mapped to DB table.
+2.@Id:(Mandatory)  For every table in mysql has primary key, if you mark any field with @Id , then that field act as primary key in table.
+3.@Column(name = "firstName",unique = true,nullable = false):(Optional)This annotation helps to customize the column.
+
+4.@GeneratedValue(strategy = GenerationType.IDENTITY): this generates the primary key id automatically.
+  | Strategy | How it works                 | DB Support                    | Pros                 | Cons                        |
+  | -------- | ---------------------------- | ----------------------------- | -------------------- | --------------------------- |
+  | AUTO     | Chooses automatically        | All                           | Easy, flexible       | Behavior differs per DB     |
+  | IDENTITY | Uses auto-increment column   | MySQL, PostgreSQL, SQL Server | Simple               | No batch insert efficiency  |
+  | SEQUENCE | Uses DB sequence object      | Oracle, PostgreSQL            | Fast, batch-friendly | Needs sequence support      |
+  | TABLE    | Uses extra table as sequence | All                           | Portable             | Slowest, extra table needed |
+
+In practice:
+
+            Use IDENTITY for MySQL.
+
+            Use SEQUENCE for Oracle/Postgres.
+
+            Use AUTO if you want Hibernate to decide.
+
+            Use TABLE only if you need portability across all DBs.

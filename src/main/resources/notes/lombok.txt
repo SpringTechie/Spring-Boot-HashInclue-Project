@@ -1,0 +1,14 @@
+Lombok: It is a java library used to create setter , getter , constructors, toString without creating manually.
+How to impl:
+1.Add lombok independence.
+2.Add the lombok plugin in intellij.
+
+imp annotations:
+1.@Setter: it generates setter methods for all the fields.
+2.@Getter: it generates getters methods for all the fields.
+3.@ToString: it overrides toString method.
+4.@AllArgsConstructor: it generates parameterized constructors with all the fields.
+5.@NoArgsConstructor: it generates default constructors.
+6.@EqualsAndHashCode: It override default EqualsAndHashCode.
+6.@Data: A convenience annotation that combines @Getter, @Setter, equals(), hashCode(), and toString().
+
