@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/hash-include")
 public class UserController {
 
+    public UserController() {
+        System.out.println("Hello UserController");
+    }
+
     @Autowired
     private UserService userService;
 

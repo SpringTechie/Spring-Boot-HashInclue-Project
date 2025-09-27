@@ -12,6 +12,10 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    public UserService() {
+        System.out.println("hello UserService");
+    }
+
     public User getUser(int id) {
         Optional<User> user = userRepository.findById(id);
         if (user.isPresent()) {
