@@ -1,0 +1,37 @@
+profiles(Environment) in SpringBoot:
+
+SpringBoot profiles:
+
+In RealTime an application before going to prod environment , it undergoes into diff Environments such as
+DEV : for developers
+QA  : for testes to test
+STAGE: it is like a preprod.
+PROD: Live Environment.
+
+So for each environment we have diff configurations for example:
+for Dev env we have diff mysql db and its username and password.
+for Stage env we have diff mysql db and its username and password.
+
+To achieve this we have to use SpringBoot provides profiles which allows us to configure diff env by specifying
+separate files , beans,and configuration.
+
+Implementation:
+Create diff properties file for each env like
+application-dev.properties
+application-prod.properties
+application-stage.properties
+application-qa.properties
+
+How to activate profile
+In Application properties specify this property to activate the env
+spring.profiles.active = dev
+
+if any property is changes for each env, then use the profile concept.
+
+if we mention the above property , while application starting spring boot checks the above property and reads the
+corresponding profile properties.
+if no profile is set , springBoot uses the application.properties or application.yml
+If no property overridden in env , then springBoot uses the default value from application.properties.
+
+By using profiles we can create beans by specifying env in @Profile annotation.
+Example: @Profile("dev")
