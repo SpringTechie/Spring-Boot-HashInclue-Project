@@ -1,0 +1,43 @@
+Diff ways to create Bean in java?
+In SpringBoot we can create in three ways:
+
+1.Annotation Based:
+Mark the class with @Component, @Service ,@Repository, @Controller, @RestController.
+@Service: mark it on class which has business logic.
+@Repository: mark it on class which interacts with the repository.
+@RestController: mark it on class which has endpoints.
+@Component: It is equal to @Service ,@Repository. but mark it on the classes which has does not business logic.
+
+2.Java Based Bean Creation:
+if we want to create any object manually and register this inside the container.
+step1: annotate the class with @Configuration(This tells to spring that this class has custom beans)
+step2: create any method that should return bean and mark that method with @Bean.
+       By this we can get full control over the object creation.
+        Method name is name of the bean in ioc container.
+        if we want to name custom name for the bean add this attribute inside the @Bean(name = "classAObject").
+
+3.XML Based : we need to create xml files and configure beans inside the xml.
+
+Scope:In Spring Boot, bean scope determines how a bean is created, shared, and managed within the application context.
+By default, all beans in spring boot are singleton.
+It means wherever you request a particular object, it returns the same object from container.
+
+If we want to change the scope of any bean, we need to annotate the @Scope("Mention scope name")
+Example: @Scope("prototype")
+Prototype: Means on every request a new object is created and shared.
+
+@Scope("request") : Creates a new bean of the bean for each HTTP request.
+
+@Scope("session") : Creates a new bean per user session.
+
+ @Bean(name = "restTemplateObject")
+    public RestTemplate getRestTemplate() {
+        return new RestTemplate();
+    }
+In Spring, when you declare a @Bean method without explicitly providing a name, the default bean name is the method name itself.
+That’s what will be registered in the IoC container, unless you override it with:
+@Bean(name = "customRestTemplate")
+By default, when you declare a @Bean in a Spring @Configuration class, its scope is: singleton
+
+
+if the bean does not IOC then spring throws NoSuchBeanDefinitionException: No bean named 'xyz' available

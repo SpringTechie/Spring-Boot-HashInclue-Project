@@ -1,0 +1,32 @@
+Spring SPEL:
+SPEL stands for Spring Expression Language.
+it is a powerful expression lang used to query and manipulate objects at runtime.
+It injects the values dynamically.
+By this annotation and expression, we can load  property from  application.properties file
+Example: @Value("${name}") // this loads the name values from application properties.
+
+When is it executed?
+@Value is processed after bean creation in the Spring IoC container.
+More precisely:
+1.Spring scans and detects the bean (@Component, @Service, @Configuration, etc.).
+2.The bean is instantiated.
+3.Spring’s BeanPostProcessor (AutowiredAnnotationBeanPostProcessor) resolves annotations like @Autowired, @Value, @ConfigurationProperties.
+At this point, the values are injected before the bean’s lifecycle methods (like @PostConstruct) run.
+
+If specified key does not exist, then Spring throws BeanCreation Exception.
+and we have an option to provide default value if the key is not present.
+@Value("${key_name:default_value}")
+
+By using spel we can also read list.
+@Value("${users}")
+List<String> users;
+
+By using SPEL, we can also perform mathematical operations and method calls.
+    @Value("#{2+3}")
+    private String age;
+
+    @Value("#{4%2==0?18:21}")
+    private String dummy;
+
+    @Value("#{2 * T(Math).PI}")
+    private int area circle_area;

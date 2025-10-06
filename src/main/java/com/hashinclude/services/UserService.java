@@ -3,10 +3,12 @@ package com.hashinclude.services;
 import com.hashinclude.models.User;
 import com.hashinclude.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 @Service
+@Scope("prototype")
 public class UserService {
 
     @Autowired

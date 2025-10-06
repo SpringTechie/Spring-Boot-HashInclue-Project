@@ -3,11 +3,17 @@ package com.hashinclude.controller;
 import com.hashinclude.models.User;
 import com.hashinclude.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/hash-include")
 public class UserController {
+
+    @Value("${spring.datasource.username}")
+    private String  username;
 
     public UserController() {
         System.out.println("Hello UserController");
@@ -19,6 +25,7 @@ public class UserController {
     // to create user
     @GetMapping("/user/id/{id}")
     public User fetchUser(@PathVariable int id) {
+        System.out.println("inside a method = "+username);
        return userService.getUser(id);
     }
 

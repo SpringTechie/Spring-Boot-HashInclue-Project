@@ -1,0 +1,47 @@
+What are Spring Boot Starters?
+
+Starters are pre-defined dependency descriptors in Spring Boot.
+Instead of searching for dozens of libraries yourself, a starter brings in all the required libraries for a particular feature.
+They are basically Maven/Gradle dependency bundles.
+
+Common Spring Boot Starters
+Starter	Purpose:
+spring-boot-starter:	Core starter: includes auto-configuration and logging.
+spring-boot-starter-web: Build RESTFul web apps (Spring MVC + Tomcat + Jackson).
+spring-boot-starter-data-jpa: 	JPA & Hibernate with Spring Data.
+spring-boot-starter-security:	Spring Security for authentication & authorization.
+spring-boot-starter-test:	Testing with JUnit, Mockito, Spring Test.
+spring-boot-starter-thymeleaf	Thymeleaf template engine for MVC apps.
+spring-boot-starter-actuator	Monitoring endpoints (health, metrics, etc.).
+spring-boot-starter-mail	Email support via JavaMail.
+spring-boot-starter-data-mongodb	MongoDB integration.
+spring-boot-starter-cache	Caching support (e.g., Ehcache, Hazelcast).
+
+
+How to run application on jetty server instead of default tomcat server?
+step1: Add tomcat dependency in exclusions of web dependency.
+        <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-tomcat</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+step2: Add jetty dependency
+       <dependency>
+       			<groupId>org.springframework.boot</groupId>
+       			<artifactId>spring-boot-starter-jetty</artifactId>
+       		</dependency>
+
+
+How to run application in diff port?
+To run app in diff port add this in properties file.
+server.port= <desired_port_number>
+if we keep port as zero
+server.port = 0
+App will run on random available port.
+server.port=-1: is a configuration setting, most commonly used in a Spring Boot application, that disables the embedded web server.
+The application will still run and can execute logic, but it will not listen for HTTP requests on any port
