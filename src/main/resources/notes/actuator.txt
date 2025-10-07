@@ -1,0 +1,45 @@
+Actuator: It provides the production ready features for monitoring and managing application.
+It exposes some endpoints that help you gain insights into your application.
+
+Impl:
+Just add actuator dependency starter in pom file.
+Now run the application & and you can see in logs saying " Exposing 1 endpoints beneath base path '/actuator'"
+which means by default only endpoint is enabled which is "/health"
+
+To access the endpoints : http://localhost:port_number/actuator/health
+The above url tells whether the application is up or Down.
+
+In Actuator, we have total 14 endpoints
+to enable all endpoints to add this property in properties file.
+
+management.endpoints.web.exposure.include = *
+
+- To enable only specific endpoints, add this
+management.endpoints.web.exposure.include= info,health,mappings
+
+- To exclude any endpoint add this
+management.endpoints.web.exposure.exclude= info,metrics
+
+// Endpoints:
+1. http://localhost:<port_number>/actuator : tells number of endpoints and gives links to access.
+2. http://localhost<port_number>/actuator/health : it tells about whether the application is up or down
+3. http://localhost:<port_number>/actuator/info : display custom application info.
+4. http://localhost:<port_number>/actuator/metrics : by using this we can monitor the metrics.
+5. http://localhost:<port_number>/actuator/beans : it tells scope and dependencies of each bean
+6. http://localhost:<port_number>/actuator/env : It tells about env that we configured in application properties
+7. http://localhost:<port_number>/actuator/configprops : Displays all configs props bound to spring boot.
+8. http://localhost:<port_number>/actuator/mappings : It gives info about endpoints we written
+9. http://localhost:<port_number>/actuator/threaddump: provides info about thread dump of jvm
+10.http://localhost:<port_number>/actuator/loggers : Allows viewing application level logs.
+13.http://localhost:<port_number>/actuator/heapdump: It generated and downloads the heap dump file useful for memory analysis.
+14.http://localhost:<port_number>/actuator/shutdown: it used to stop the running application.
+
+
+All other endpoints are accessed by Using GET access but shutdown endpoint is accessed by using POST request.
+for security reasons, it is disabled by default.
+to enable this endpoint use this.
+management.endpoint.shutdown.enabled = true
+
+
+
+
