@@ -11,7 +11,7 @@ public class Schedular {
     // fixedDelay : waits for 5 seconds, when job is completed.
     // initialDelay = 3000
 
-    @Scheduled(fixedRate = 5000)
+    //@Scheduled(fixedRate = 5000)
     public void run() {
         try {
             System.out.println("method started");

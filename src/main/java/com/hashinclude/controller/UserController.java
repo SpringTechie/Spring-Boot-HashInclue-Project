@@ -38,7 +38,8 @@ public class UserController {
     // To update user
     @PutMapping("/update-user")
     public String updateUser(@RequestBody User user) {
-       return userService.updateUser(user);
+        userService.updateUser(user);
+        return "Updated Succefully";
 
     }
 

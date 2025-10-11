@@ -3,6 +3,9 @@ package com.hashinclude.services;
 import com.hashinclude.models.User;
 import com.hashinclude.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +21,9 @@ public class UserService {
         System.out.println("hello UserService");
     }
 
+    @Cacheable(key = "#id",value = "usertable")
     public User getUser(int id) {
+        System.out.println("data not found in cache");
         Optional<User> user = userRepository.findById(id);
         if (user.isPresent()) {
             return user.get();
@@ -36,11 +41,13 @@ public class UserService {
         return "User added Successfully";
     }
 
-    public String updateUser(User user) {
-        userRepository.save(user);
-        return "Updated Successfully";
+    @CachePut(key = "#user.id",value = "usertable")
+    public User updateUser(User user) {
+       return userRepository.save(user);
+
     }
 
+    @CacheEvict(key = "#id",value = "usertable")
     public String deleteUser(int id) {
         userRepository.deleteById(id);
         return "delete Successfully";
