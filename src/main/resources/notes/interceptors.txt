@@ -1,0 +1,12 @@
+In SpringBoot an interceptors is used to intercept HTTP request and response allows us to perform some custom
+logic before and after the request is processed by controller.
+
+IMPL:
+Create a custom interceptor class and implement the HandlerInterceptor interface.
+HandlerInterceptor it is part of springframework has three default methods.
+Register this custom interceptor into spring framework.
+
+1.preHandle() : Request reaches here first then we have to write custom logic and return true then it goes to controller else rejected.
+2.postHandle() : Once the controller process the request but before the response is returned.
+                 while processing the request if we encounter with exception , then this method is not executed.
+3.afterCompletion(): Invoked after the complete request is finished.
