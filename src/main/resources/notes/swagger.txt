@@ -1,0 +1,38 @@
+Swagger:(OpenAPI) Integration With SpringBoot3.
+Create a rest api doc: which tells about api params and path etc…
+Swagger is a openApi tool used to document the rest apis in application.
+By using this tool we test and interact with Apis.
+
+How to implement Swagger?
+Add Swagger Dependency
+
+<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.8.5</version>
+		</dependency>
+
+
+How access the Swagger tool: http:localhost:8080/swagger-ui/index.html
+Important Annotation:
+
+Use this annotation to describe about your project info.
+1.@OpenAPIDefinition(
+		info = @Info(
+				title = "Swagger-example",
+				version = "1.0",
+				description = "API for my application"
+		)
+)
+
+2.@Tag(name="Employee-Controller",description = "This controller has Employee related AP's")
+This tells about controller class.
+
+3. @ApiResponse(responseCode = "200",description = "Deleted Employee")
+This tell what api  response.
+
+
+4.@Parameter(name="id",description = "Enter Employee Id",example = "2")
+This tells about parameters of API.
+
+5. @Operation(summary = "Find product By Id",description = "This helps to find the product by Product Id")

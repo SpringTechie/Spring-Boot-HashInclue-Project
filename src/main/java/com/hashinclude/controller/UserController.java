@@ -2,6 +2,10 @@ package com.hashinclude.controller;
 
 import com.hashinclude.models.User;
 import com.hashinclude.services.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/hash-include")
+@Tag(name="UserController",description = "This controller has user related AP's")
 public class UserController {
 
     @Value("${spring.datasource.username}")
@@ -24,8 +29,11 @@ public class UserController {
 
     // to create user
     @GetMapping("/user/id/{id}")
+    @ApiResponse(responseCode = "200",description = "Get user by Id")
+    @Parameter(name="id",description = "Enter user Id",example = "23")
+    @Operation(summary = "Find user By Id",description = "This helps to find the user by  Id")
     public User fetchUser(@PathVariable int id) {
-        System.out.println("inside a method = "+username);
+        System.out.println("inside a method = "+ id);
        return userService.getUser(id);
     }
 

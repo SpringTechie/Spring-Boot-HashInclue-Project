@@ -1,0 +1,27 @@
+Logging: By writing logs in application we get to know where the issue occurred and up to which part of the code is executed.
+We use @Slfy4j to write logs.
+Annotate this on top of the class.
+To write the logs use "log" keyword.
+Example: log.info("Hello Raja");
+
+There are diff logging levels:
+1.TRACE: Very Detailed Information.
+       low level debugging
+2.DEBUG: Debugging Application Flow.
+       During development.
+
+3.INFO: General Application Info.
+       used to show high level events
+4.WARN: Non-Critical
+      Something went wrong but still app is running.
+5.ERROR: Critical issues:
+       Application error, exceptions,or failed process.
+
+By default "info" is enabled.
+
+How to enable other log level.
+logging.level.root= info
+To enable only for specific package: logging.level.<package_name>= <log_level>
+
+To store logs in file use this property
+logging.file.name = <file_name>
