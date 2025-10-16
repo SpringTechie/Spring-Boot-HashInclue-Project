@@ -1,5 +1,6 @@
 package com.hashinclude.services;
 
+import com.hashinclude.exceptions.UserNotFoundException;
 import com.hashinclude.models.User;
 import com.hashinclude.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -8,6 +9,7 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Scope;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -38,13 +40,13 @@ public class UserService {
                 return user.get();
             }
             else {
-                throw new RuntimeException("No user found with id "+id);
+                throw new UserNotFoundException("No user found with id "+id, 204);
             }
         }
-        catch (RuntimeException exception) {
-            log.error("Exception : " +exception.getMessage());
+        catch (UserNotFoundException exception) {
+            log.error("Exception : " + exception.getMessage());
+            throw exception;
         }
-        return null;
     }
 
     // This api helps to add new user
