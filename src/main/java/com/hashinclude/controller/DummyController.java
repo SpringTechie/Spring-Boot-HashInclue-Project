@@ -13,6 +13,6 @@ public class DummyController {
 
     @GetMapping("/get")
     public String demo() {
-        return "Dummy";
+        return "Dummy Controller";
     }
 }
