@@ -13,6 +13,7 @@ public class DummyController {
 
     @GetMapping("/get")
     public String demo() {
+        System.out.println("Hello HashInclude");
         return "Dummy Controller";
     }
 }
