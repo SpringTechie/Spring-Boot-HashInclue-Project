@@ -11,9 +11,9 @@ public class User implements Serializable {
     @Id
     @GeneratedValue
     private int id;
-    @Column(name = "firstName",unique = true,nullable = false)
+
+    @Column(name = "name",unique = true,nullable = false)
     private String firstName;
-    @Column(name = "lastName",unique = true,nullable = false)
     private String lastName;
     private int age;
 }
